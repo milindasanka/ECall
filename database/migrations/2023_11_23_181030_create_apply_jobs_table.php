@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('job_id');
             $table->string('user_id');
             $table->string('applyer_id');
-            $table->string('is_accept');
+            $table->string('status')->nullable();
             $table->date('date');
             $table->string('call link');
             $table->timestamps();
