@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\jobController;
+use App\Http\Controllers\MeetingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home2', 'HomeController@home2')->name('home2');
 Route::get('/userlist', 'HomeController@userlist')->name('userlist');
+
 Route::get('/joblist', 'jobController@joblist')->name('joblist');
 Route::get('/jobview/{id}', 'jobController@jobview')->name('jobview');
 Route::get('/application', 'jobController@application')->name('application');
@@ -41,6 +43,11 @@ Route::post('/acceptjob', 'jobController@acceptjob')->name('application.acceptjo
 Route::get('/viewappliction', 'jobController@viewappliction')->name('application.viewappliction');
 Route::post('/addNewjob', 'jobController@addNewjob')->name('addNewjob');
 Route::post('/jobdelu', 'jobController@jobdelu')->name('jobdelu');
+
+Route::post('/createmeeting', 'MeetingController@create')->name('createmeeting');
+Route::post('/modulatorjoin', 'MeetingController@Modulatorjoin')->name('modulatorjoin');
+Route::post('/atendeejoin', 'MeetingController@Atendeejoin')->name('atendeejoin');
+
 Route::get('/addjobpost', function () {
     return view('user.addjobpost');
 });

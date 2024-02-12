@@ -11,6 +11,7 @@
             <th scope="col">Job ID</th>
             <th scope="col">View Action</th>
             <th scope="col">Action</th>
+            <th scope="col">Time</th>
         </tr>
         </thead>
         <tbody>
@@ -29,23 +30,34 @@
                             <button type="submit" class="btn btn-success" >Accept</button>
                         </form>
                     </td>
-                @else
+                @elseif($item->status == 1)
                     <td>
-                        <form action="/#" method="POST">
+                        <form action="/createmeeting" method="POST">
                             @csrf
                             <input type="hidden" name="job_id" value="{{ $item->id }}">
-                            <button type="submit" class="btn btn-warning" >CREATE MEETING</button>
+                            <input type="datetime-local" name="time" class="form-control datetimepicker-input" style="width: 120px;">
+                            <button type="submit" class="btn btn-warning btn-sm" >CREATE MEETING</button>
+                        </form>
+                    </td>
+                @elseif($item->status == 2)
+                    <td>
+                        <form action="/modulatorjoin" method="POST">
+                            @csrf
+                            <input type="hidden" name="job_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-success" >START MEETING</button>
                         </form>
                     </td>
                 @endif
-
-                <td> <form action="/deleteapplication" method="POST">
-                        @csrf
-                        <input type="hidden" name="job_id" value="{{ $item->id }}">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-
+                @if($item->status == 2)
+                    <td>{{$item->date}}</td>
+                @else
+                    <td> <form action="/deleteapplication" method="POST">
+                            @csrf
+                            <input type="hidden" name="job_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

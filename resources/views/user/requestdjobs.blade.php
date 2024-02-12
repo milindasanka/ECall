@@ -28,7 +28,13 @@
                     @if($item->status == 1)
                         <button class="btn btn-primary" >ACCEPTED</button>
                     @elseif($item->status == 2)
-                        <button class="btn btn-success" >JOIN INTERVIEW</button>
+                        <button class="btn btn-success" disabled >JOIN INTERVIEW </button>  {{$item->date}}
+                    @elseif($item->status == 3)
+                        <form action="/atendeejoin" method="POST">
+                            @csrf
+                            <input type="hidden" name="job_id" value="{{ $item->id }}">
+                            <button class="btn btn-success" >JOIN INTERVIEW </button>  {{$item->date}}
+                        </form>
                     @else
                         <button class="btn btn-warning" >PENDING</button>
                     @endif
@@ -36,7 +42,7 @@
                 <td> <form action="/deleteapplicationx" method="POST">
                         @csrf
                         <input type="hidden" name="job_id" value="{{ $item->id }}">
-                        @if($item->status == 2)
+                        @if($item->status == 2 || $item->status == 3)
                             <button type="submit" class="btn btn-danger" disabled>Cancel</button>
                         @else
                             <button type="submit" class="btn btn-danger">Cancel</button>
