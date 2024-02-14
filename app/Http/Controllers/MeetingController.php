@@ -64,7 +64,21 @@ class MeetingController extends Controller
     }
 
     function Atendeejoin (Request $request){
+        $Server = env('BBSERVER');
+        $Shared_secret = env('BBSHARED_SECRET');
+        $name = $request->job_id;
+        $meetingID = 'ERM'.$name;
+        $userx = apply_job::where('id', $name)->first();
+        $atendee = User::where('id', $userx['user_id'])->first();
+        $atendeePW = $atendee['password'];
 
+        $checksumurl ='joinfullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true'.$Shared_secret;
+        $checksum = hash('sha1', $checksumurl);
+
+        $url =$Server.'/join?fullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true&checksum='.$checksum;
+        $response = file_get_contents($url);
+        apply_job::where('id', $name)->update(['status' => '4']);
+        echo $response;
     }
 
 }
