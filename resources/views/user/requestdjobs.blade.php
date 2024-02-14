@@ -35,6 +35,8 @@
                             <input type="hidden" name="job_id" value="{{ $item->id }}">
                             <button class="btn btn-success" >JOIN INTERVIEW </button>  {{$item->date}}
                         </form>
+                    @elseif($item->status == 4)
+                        <button class="btn btn-info" disabled >INTERVIEW OVER</button>
                     @else
                         <button class="btn btn-warning" >PENDING</button>
                     @endif

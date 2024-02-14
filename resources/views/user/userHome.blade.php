@@ -28,8 +28,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Complete Jobs</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Open Jobs</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $widget['jobs'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -45,8 +45,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pending Interviews</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">21</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Applications</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $widget['applications'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -62,10 +62,10 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pending Jobs</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Requested Jobs</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $widget['requested'] }}</div>
                                 </div>
                             </div>
                         </div>
@@ -106,45 +106,45 @@
                     <h6 class="m-0 font-weight-bold text-primary">JOBS</h6>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">Software Engineer <span class="float-right">20%</span></h4>
+                    <h4 class="small font-weight-bold">Software Engineer <span class="float-right">{{$jobscat['se']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{$jobscat['se']}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Project Manager<span class="float-right">40%</span></h4>
+                    <h4 class="small font-weight-bold">Project Manager<span class="float-right">{{$jobscat['pm']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{$jobscat['pm']}}%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">QA Engineer<span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">QA Engineer<span class="float-right">{{$jobscat['qa']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['qa']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">UI UX Designer<span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">UI UX Designer<span class="float-right">{{$jobscat['ui']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['ui']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Tech Lead<span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">Tech Lead<span class="float-right">{{$jobscat['tl']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['tl']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Graphic Designer<span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">Graphic Designer<span class="float-right">{{$jobscat['gd']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['gd']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Business Analyst<span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">Business Analyst<span class="float-right">{{$jobscat['ba']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['ba']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">System Administrator <span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">System Administrator <span class="float-right">{{$jobscat['sa']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{$jobscat['sa']}}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Data Engineer <span class="float-right">80%</span></h4>
+                    <h4 class="small font-weight-bold">Data Engineer <span class="float-right">{{$jobscat['de']}}%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{$jobscat['de']}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Software Architect <span class="float-right">50%</span></h4>
+                    <h4 class="small font-weight-bold">Software Architect <span class="float-right">{{$jobscat['sar']}}%</span></h4>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$jobscat['sar']}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>

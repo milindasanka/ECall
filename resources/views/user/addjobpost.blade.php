@@ -32,7 +32,7 @@
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="validationCustom01">Job Title</label>
+                <label for="validationCustom01">About the job</label>
                 <textarea class="form-control" id="job_description" rows="5" placeholder="Job Description" name="job_description" required></textarea>
                 <div class="valid-feedback">
                     Looks good!

@@ -33,11 +33,13 @@ class UserController extends Controller
         $sex = $req->sex;
         $phone = $req->phone;
         $password = $req->password;
+
         $User = new User;
         $User->name = $fname;
         $User->last_name = $lname;
         $User ->email = $email;
         $User ->password = $password;
+
         $emuser = new emuser;
         $emuser->f_name = $fname;
         $emuser->l_name = $lname;
@@ -46,9 +48,10 @@ class UserController extends Controller
         $emuser->education_level = $education_level;
         $emuser->description = $about_me;
         $skillsArray = array();
-        $skillsArray = explode(',', $request->skills);
+        $skillsArray = explode(',', $req->skills);
         $skillsArray = array_map('trim', $skillsArray);
-        $emuser->skills = $skillsArray;
+        $skillsArrayx = json_encode($skillsArray);
+        $emuser->skills = $skillsArrayx;
         $emuser->birthday = $dob;
         $emuser->experience_level = $experience_level;
         $emuser->email = $email;
@@ -56,6 +59,7 @@ class UserController extends Controller
         $emuser->save();
         $User ->save();
 
-        return view('user.Userlogin');
+        return redirect()->route('login');
+
     }
 }

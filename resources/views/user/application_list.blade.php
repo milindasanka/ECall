@@ -47,6 +47,10 @@
                             <button type="submit" class="btn btn-success" >START MEETING</button>
                         </form>
                     </td>
+                @elseif($item->status == 4)
+                    <td>
+                        <button type="submit" class="btn btn-secondary" >INTERVIEW OVER</button>
+                    </td>
                 @endif
                 @if($item->status == 2)
                     <td>{{$item->date}}</td>
