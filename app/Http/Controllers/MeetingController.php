@@ -9,6 +9,8 @@ use App\Models\User;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class MeetingController extends Controller
 {
@@ -16,12 +18,12 @@ class MeetingController extends Controller
         $Server = env('BBSERVER');
         $Shared_secret = env('BBSHARED_SECRET');
         $name = $request->job_id;
-        $meetingID = 'ERM'.$name;
+        $meetingID = 'ERMRS'.$name;
         $userx = apply_job::where('id', $name)->first();
         $moderator = User::where('id', $userx['user_id'])->first();
         $attendee = User::where('id', $userx['applyer_id'])->first();
-        $moderatorPW = $moderator['password'];
-        $attendeePW = $attendee['password'];
+        $moderatorPW = 'mPW'.$name;
+        $attendeePW = 'stPW'.$name;
         $checksumurl ='createname='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&moderatorPW='.$moderatorPW.$Shared_secret;
         $checksum = hash('sha1', $checksumurl);
         //create meeting
@@ -126,36 +128,46 @@ class MeetingController extends Controller
         $Server = env('BBSERVER');
         $Shared_secret = env('BBSHARED_SECRET');
         $name = $request->job_id;
-        $meetingID = 'ERM'.$name;
+        $username = $id = Auth::user()->name;
+        $meetingID = 'ERMRS'.$name;
         $userx = apply_job::where('id', $name)->first();
         $moderator = User::where('id', $userx['user_id'])->first();
-        $moderatorPW = $moderator['password'];
+        $moderatorPW = 'mPW'.$name;
 
-        $checksumurl ='joinfullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$moderatorPW.'&redirect=true'.$Shared_secret;
+        $checksumurl ='joinfullName='.$username.'+Meeting&meetingID='.$meetingID.'&password='.$moderatorPW.'&redirect=true'.$Shared_secret;
         $checksum = hash('sha1', $checksumurl);
 
-        $url =$Server.'/join?fullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$moderatorPW.'&redirect=true&checksum='.$checksum;
-        $response = file_get_contents($url);
+        $url =$Server.'/join?fullName='.$username.'+Meeting&meetingID='.$meetingID.'&password='.$moderatorPW.'&redirect=true&checksum='.$checksum;
+
         apply_job::where('id', $name)->update(['status' => '3']);
-        echo $response;
+
+        $script = " <script>
+                    var url = '".$url."';
+                    window.location.href = url;
+                    </script>";       
+        return response($script);
     }
 
     function Atendeejoin (Request $request){
         $Server = env('BBSERVER');
         $Shared_secret = env('BBSHARED_SECRET');
         $name = $request->job_id;
-        $meetingID = 'ERM'.$name;
+        $username = $id = Auth::user()->name;
+        $meetingID = 'ERMRS'.$name;
         $userx = apply_job::where('id', $name)->first();
         $atendee = User::where('id', $userx['user_id'])->first();
-        $atendeePW = $atendee['password'];
-
-        $checksumurl ='joinfullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true'.$Shared_secret;
+        $atendeePW = 'stPW'.$name;
+        $checksumurl ='joinfullName='.$username.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true'.$Shared_secret;
         $checksum = hash('sha1', $checksumurl);
 
-        $url =$Server.'/join?fullName='.$name.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true&checksum='.$checksum;
-        $response = file_get_contents($url);
+        $url =$Server.'/join?fullName='.$username.'+Meeting&meetingID='.$meetingID.'&password='.$atendeePW.'&redirect=true&checksum='.$checksum;
+
         apply_job::where('id', $name)->update(['status' => '4']);
-        echo $response;
+        $script = " <script>
+                    var url = '".$url."';
+                    window.location.href = url;
+                    </script>";        
+        return response($script);
     }
 
 }
