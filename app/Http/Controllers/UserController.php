@@ -16,6 +16,32 @@ class UserController extends Controller
         return view('welcome', ['data' => $data]);
     }
 
+    public function search(Request $request){
+        $text = $request->search_key;
+        $category = $request->search_cat;
+
+        if($text === null && $category === null){
+            return $this->welcome();
+        }elseif ($category === null && $text != null){
+            $data = jobs::where('is_active', '1')
+                ->where('job_description', 'like', '%'.$text.'%')
+                ->get();
+            return view('welcome', ['data' => $data]);
+        }elseif ($category != null && $text === null){
+            $data = jobs::where('is_active', '1')
+                ->where('job_category',$category)
+                ->get();
+            return view('welcome', ['data' => $data]);
+        }else{
+            $data = jobs::where('is_active', '1')
+                ->where('job_description', 'like', '%'.$text.'%')
+                ->where('job_category',$category)
+                ->get();
+            return view('welcome', ['data' => $data]);
+        }
+
+    }
+
     /**
      * @param Request $req
      * @return void

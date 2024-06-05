@@ -24,6 +24,7 @@ Route::get('/UserRegister', function () {
 });
 Route::post('/adduser',[UserController::class,'adduser']);
 Route::get('/', 'UserController@welcome')->name('welcome');
+Route::get('/search_list', 'UserController@search');
 
 Auth::routes();
 

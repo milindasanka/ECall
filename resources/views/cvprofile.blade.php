@@ -73,7 +73,7 @@
             @csrf
             <div class="row jumbotron box8">
                 <div class="col-sm-12 mx-t3 mb-4">
-                    <h2 class="text-center text-info">My Account</h2>
+                    <h2 class="text-center text-info">My CV</h2>
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="name-f">First Name</label>
