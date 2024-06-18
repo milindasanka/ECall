@@ -458,20 +458,13 @@
                               <div class="searchbox">
                                   <form action="search_list" method="GET">
                                     <div class="row">
-                                      <div class="col-md-5"><input type="text" name="search_key" class="form-control" placeholder="Search by Keywords..."></div>
+                                      <div class="col-md-5"><input type="text" name="search_key" class="form-control" placeholder="Job title, keywords, or company...."></div>
                                       <div class="col-md-5">
                                         <select class="form-control category" name="search_cat">
-                                            <option value="">Search Job Title</option>
-                                            <option value="Software Engineer">Software Engineer</option>
-                                            <option value="Project Manager">Project Manager</option>
-                                            <option value="QA Engineer">QA Engineer</option>
-                                            <option value="UI UX Designer">UI UX Designer</option>
-                                            <option value="Tech Lead">Tech Lead</option>
-                                            <option value="Graphic Designer">Graphic Designer</option>
-                                            <option value="Business Analyst">Business Analyst</option>
-                                            <option value="System Administrator">System Administrator</option>
-                                            <option value="Data Engineer">Data Engineer</option>
-                                            <option value="Software Architect">Software Architect</option>
+                                            <option value="">Location</option>
+                                            <option value="On Site">On Site</option>
+                                            <option value="Remote">Remote</option>
+                                            <option value="Hybrid">Hybrid</option>
                                         </select>
                                       </div>
                                       <div class="col-md-2"><input type="submit" class="btn btn-primary" class="form-control" value="Search"></div>
@@ -497,13 +490,13 @@
                     <li class="job-preview">
                         <div class="content float-left">
                             <h4 class="job-title">
-                                {{ $item->job_title }}
+                                {{ $item->job_title }}  <span class="company" style="font-size: 15px;"> ({{$item->place}})</span>
                             </h4>
                             <h5 class="company">
-                                {{ $item->place }}
+                                {{ $item->company_name }}
                             </h5>
                         </div>
-                        <a href="jobview/{{ $item->id }}" class="btn btn-apply float-sm-right float-xs-left">
+                        <a href="{{ route('jobview', ['id' => $item->id, 'h' => 0]) }}" class="btn btn-apply float-sm-right float-xs-left">
                             Apply
                         </a>
                     </li>

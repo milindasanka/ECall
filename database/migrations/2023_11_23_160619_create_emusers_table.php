@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('skills');
             $table->date('birthday');
             $table->string('experience_level');
-            $table->string('meeting_link');
+            $table->string('meeting_link')->nullable();
             $table->string('cv')->nullable();
             $table->string('email')->unique();
             $table->timestamps();

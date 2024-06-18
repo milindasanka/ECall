@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('applyer_id');
             $table->string('status')->nullable();
-            $table->date('date');
-            $table->string('call link');
+            $table->date('date')->nullable();
+            $table->string('call link')->nullable();
             $table->timestamps();
         });
     }

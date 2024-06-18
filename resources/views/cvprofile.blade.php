@@ -22,8 +22,8 @@
         </div>
     @endif
 
+
     <style>
-        <style>
         label {
             font-weight: 600;
             color: #666;

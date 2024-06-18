@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('emusers_id');
             $table->string('job_title');
             $table->string('job_category');
+            $table->string('company_name');
+            $table->string('skills')->nullable();
             $table->string('job_description');
             $table->string('place');
             $table->string('is_active');
-            $table->string('call_link');
+            $table->string('call_link')->nullable();
             $table->timestamps();
         });
     }

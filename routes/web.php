@@ -31,9 +31,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home2', 'HomeController@home2')->name('home2');
 Route::get('/userlist', 'HomeController@userlist')->name('userlist');
+Route::get('/adminjobslist', 'HomeController@jobslist')->name('adminjobslist');
 
 Route::get('/joblist', 'jobController@joblist')->name('joblist');
-Route::get('/jobview/{id}', 'jobController@jobview')->name('jobview');
+Route::get('/jobview/{id}{h}', 'jobController@jobview')->name('jobview');
 Route::get('/application', 'jobController@application')->name('application');
 Route::get('/requestd', 'jobController@requestd')->name('requestd');
 Route::get('jobview/applythisjob/{id}', 'jobController@applythisjob')->name('applythisjob');

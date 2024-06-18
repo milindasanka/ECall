@@ -32,10 +32,16 @@ class jobController extends Controller
     }
 
     function addNewjob(Request $request){
+
+        $skillsArray = array();
+        $skillsArray = explode(',', $request->skills);
+        $skillsArray = array_map('trim', $skillsArray);
         $jobs = new jobs;
         $jobs->job_title = $request->job_title;
         $jobs->job_category = $request->job_category;
+        $jobs->company_name = $request->company_name;
         $jobs->job_description = $request->job_description;
+        $jobs->skills = json_encode($skillsArray);
         $jobs->place = $request->place;
         $jobs->is_active = '1';
         $jobs->emusers_id = Auth::user()->id;
@@ -49,11 +55,12 @@ class jobController extends Controller
         return $this->joblist()->render();
     }
 
-    function jobview($id){
+    function jobview($id , $h){
+
         $data = jobs::where('id', $id)
                 ->get();
 
-        return view('user.jobview',['data' => $data]);
+        return view('user.jobview',['data' => $data , 'hide' => $h]);
     }
 
     function applythisjob($id){
@@ -140,7 +147,7 @@ class jobController extends Controller
 
                         <p>Please Loging Dashboard and Reveiw Application</p>
 
-                        <p>Best regards,<br>Team '.env('APP_NAME').' </p>
+                        <p>Best regards,<br>Team FLEXHAIER </p>
                     </div>
                 </body>
             </html>';
@@ -246,7 +253,7 @@ class jobController extends Controller
                     <p>We will give you an interview soon
                     </p>
 
-                    <p>Best regards,<br>Team '.env('APP_NAME').' </p>
+                    <p>Best regards,<br>Team FLEXHAIER </p>
 
                 </div>
             </body>

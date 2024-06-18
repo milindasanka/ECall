@@ -24,10 +24,12 @@ class MeetingController extends Controller
         $attendee = User::where('id', $userx['applyer_id'])->first();
         $moderatorPW = 'mPW'.$name;
         $attendeePW = 'stPW'.$name;
-        $checksumurl ='createname='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&moderatorPW='.$moderatorPW.$Shared_secret;
+        $checksumurl ='createname='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&moderatorPW='.$moderatorPW.$Shared_secret;
+        $checksumurl2 ='endmeetingID='.$meetingID.'&password='.$moderatorPW.$Shared_secret;
         $checksum = hash('sha1', $checksumurl);
         //create meeting
-        $url = $Server.'/create?name='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&moderatorPW='.$moderatorPW.'&checksum='.$checksum;
+        $url = $Server.'/create?name='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&moderatorPW='.$moderatorPW.'&checksum='.$checksum;
+       // $url = $Server.'/end?meetingID='.$meetingID.'&password='.$moderatorPW.'&checksum='.$checksum;
         $response = file_get_contents($url);
 
         if ($response !== false) {
@@ -103,7 +105,7 @@ class MeetingController extends Controller
                                 <p>Time: '.$formattedTime.'
                                 </p>
 
-                                <p>Best regards,<br>Team '.env('APP_NAME').' </p>
+                                <p>Best regards,<br>Team FLEXHAIER </p>
 
                             </div>
                         </body>
@@ -144,7 +146,7 @@ class MeetingController extends Controller
         $script = " <script>
                     var url = '".$url."';
                     window.location.href = url;
-                    </script>";       
+                    </script>";
         return response($script);
     }
 
@@ -166,7 +168,7 @@ class MeetingController extends Controller
         $script = " <script>
                     var url = '".$url."';
                     window.location.href = url;
-                    </script>";        
+                    </script>";
         return response($script);
     }
 
