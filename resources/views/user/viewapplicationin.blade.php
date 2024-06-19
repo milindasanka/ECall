@@ -43,7 +43,9 @@
         <li><strong>Contact No:</strong>{{$contact_no}} </li>
         <li><strong>Education Level:</strong> {{$eduction_level}} </li>
         <li><strong>Experience Level:</strong> {{$experience_level}} </li>
-        <li><strong>Skills:</strong> {{$skills}} </li>
+        <li><strong>Skills:</strong> @foreach(json_decode($skills) as $item)
+                <span>{{$item}}</span>
+            @endforeach </li>
         <li><strong>Description:</strong> {{$description}} </li>
         <li><strong>CV:</strong> <button class="btn btn-success btn-sm" ><a href="{{$cv}}" target="_blank" style="color: white">Download CV</a></button> </li>
     </ul>

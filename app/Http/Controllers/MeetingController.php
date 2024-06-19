@@ -24,13 +24,14 @@ class MeetingController extends Controller
         $attendee = User::where('id', $userx['applyer_id'])->first();
         $moderatorPW = 'mPW'.$name;
         $attendeePW = 'stPW'.$name;
-        $checksumurl ='createname='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&moderatorPW='.$moderatorPW.$Shared_secret;
-        $checksumurl2 ='endmeetingID='.$meetingID.'&password='.$moderatorPW.$Shared_secret;
+        $checksumurl ='createname='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&allowStartStopRecording=true&autoStartRecording=false&record=false&voiceBridge=70091&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&moderatorPW='.$moderatorPW.$Shared_secret;
+        //$checksumurl2 ='endmeetingID='.$meetingID.'&password='.$moderatorPW.$Shared_secret;
         $checksum = hash('sha1', $checksumurl);
         //create meeting
-        $url = $Server.'/create?name='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&moderatorPW='.$moderatorPW.'&checksum='.$checksum;
-       // $url = $Server.'/end?meetingID='.$meetingID.'&password='.$moderatorPW.'&checksum='.$checksum;
+        $url = $Server.'/create?name='.$name.'+Meeting&meetingID='.$meetingID.'&attendeePW='.$attendeePW.'&duration=120&allowStartStopRecording=true&autoStartRecording=false&record=false&voiceBridge=70091&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&moderatorPW='.$moderatorPW.'&checksum='.$checksum;
+        // $url = $Server.'/end?meetingID='.$meetingID.'&password='.$moderatorPW.'&checksum='.$checksum;
         $response = file_get_contents($url);
+
 
         if ($response !== false) {
             $xml = simplexml_load_string($response);
