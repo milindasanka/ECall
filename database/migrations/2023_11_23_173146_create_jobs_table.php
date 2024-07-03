@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('job_category');
             $table->string('company_name');
             $table->string('skills')->nullable();
-            $table->string('job_description');
+            $table->string('job_description', 255);
             $table->string('place');
             $table->string('is_active');
             $table->string('call_link')->nullable();
