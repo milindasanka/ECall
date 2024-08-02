@@ -150,5 +150,23 @@
 
         </div>
 
+        <div class="col-lg-6 mb-4">
+
+            <!-- Project Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Download Reports</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4"><a href="/weekly"> <button class="btn btn-outline-primary">Weekly</button></a></div>
+                        <div class="col-4"><a href="/monthly"> <button class="btn btn-outline-primary">Monthly</button></a></div>
+                        <div class="col-4"><a href="/yearly"> <button class="btn btn-outline-primary">Yearly</button></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 @endsection

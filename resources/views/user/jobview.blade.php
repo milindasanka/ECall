@@ -235,6 +235,29 @@
             display: inline-block;
             cursor: pointer;
         }
+
+        footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0.5rem;
+            background-color: #efefef;
+            text-align: center;
+        }
+
+        /* footer text */
+        footer div p{
+            font-family: rubik one;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        footer div p i.red{
+            color: red;
+            size: 24px;
+        }
+
     </style>
 </head>
 <body>
@@ -320,6 +343,9 @@
         </div>
     </div>
 </section>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 @endforeach
 <script>
     document.addEventListener('DOMContentLoaded', () => {

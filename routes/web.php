@@ -1,5 +1,6 @@
 <?php
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -17,8 +18,6 @@ use App\Http\Controllers\MeetingController;
 |
 */
 
-
-
 Route::get('/UserRegister', function () {
     return view('user.UserRegister');
 });
@@ -32,6 +31,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home2', 'HomeController@home2')->name('home2');
 Route::get('/userlist', 'HomeController@userlist')->name('userlist');
 Route::get('/adminjobslist', 'HomeController@jobslist')->name('adminjobslist');
+
+Route::get('/weekly','ReportController@weekly');
+Route::get('/monthly','ReportController@monthly');
+Route::get('/yearly','ReportController@yearly');
 
 Route::get('/joblist', 'jobController@joblist')->name('joblist');
 Route::get('/jobview/{id}{h}', 'jobController@jobview')->name('jobview');

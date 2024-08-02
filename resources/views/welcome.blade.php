@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E Jobs</title>
+    <title>FLEXHAIER</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -401,6 +401,90 @@
                 opacity: 1;
             }
         }
+
+        footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0.5rem;
+            background-color: #efefef;
+            text-align: center;
+        }
+
+        /* footer text */
+        footer div p{
+            font-family: rubik one;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        footer div p i.red{
+            color: red;
+            size: 24px;
+        }
+
+        /* footer text effects */
+        footer div p span{
+            transition: background-color,color 1500ms ease;
+            background-color: black;
+            color: white;
+        }
+
+        footer div p span:hover{
+            background-color:white ;
+            color: black;
+        }
+
+        /* Footer Image Links */
+        footer a.github {
+            -webkit-transition:color 500ms ease;
+            -moz-transition:color 500ms ease;
+            -o-transition:color 500ms ease;
+            transition: color 500ms ease;
+            font-size: 3em;
+            color: rgb(13,38,54);
+            padding: 10px;
+            display:inline-block;
+        }
+
+        footer a.codepen {
+            -webkit-transition:color 500ms ease;
+            -moz-transition:color 500ms ease;
+            -o-transition:color 500ms ease;
+            transition: color 500ms ease;
+            font-size: 3em;
+            color: black;
+            padding: 10px;
+            display:inline-block;
+        }
+
+        /* image links hover effects */
+        footer a.github:hover {
+            color: darkgray;
+        }
+
+        footer a.codepen:hover {
+            color: darkgray;
+        }
+
+        /* Resposive Footer */
+        footer.mobile {
+            display:none;
+        }
+
+        @media screen and (max-width: 400px) {
+            footer.pc {
+                display:none;
+            }
+            footer.mobile {
+                display:block;
+            }
+            footer.mobile div p {
+                font-size: 15px;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -449,9 +533,9 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="site-heading">
-                    <h1 class="heading">
-                        Open Positions
-                    </h1>
+                    <h2 class="heading">
+                        Find Positions
+                    </h2>
                     <span class="subheading">
 
 {{--							Search Bar Start --}}
@@ -507,6 +591,8 @@
         </div>
     </div>
 </section>
+
+
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
