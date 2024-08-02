@@ -101,7 +101,7 @@ class MeetingController extends Controller
                                 <p>Hey,</p>
 
                                 <p> Schedule your interview on the job application [ID: '.$request->job_id.']. Please join the meeting using the dashboard below at the time indicated</p>
-
+                                <a href="http://127.0.0.1:8000/requestd" class="button" style="color: white;">Join Meeting</a>
                                 <p>Time: '.$formattedTime.'
                                 </p>
 
@@ -170,6 +170,19 @@ class MeetingController extends Controller
                     window.location.href = url;
                     </script>";
         return response($script);
+    }
+
+    function Endmeeting(){
+        $id = Auth::user()->id;
+        $job = apply_job::where('user_id', $id)
+                            ->where('status', 4)
+                            ->get();
+        if(empty(count($job) == 0)){
+            apply_job::where('id', $job[0]['id'])->update(['status' => '5']);
+            return redirect()->route('application');
+        }else{
+            return redirect()->route('welcome');
+        }
     }
 
 }

@@ -22,7 +22,7 @@
                 <td>
                     <button class="btn btn-info" ><a href="{{ route('application.viewappliction', ['job_id' => $item->id]) }}" target="_blank" style="color: white">View Application</a></button>
                 </td>
-                @if($item->status == null)
+                @if($item->status == null || $item->status == 0)
                     <td>
                         <form action="/acceptjob" method="POST">
                             @csrf
@@ -30,7 +30,7 @@
                             <button type="submit" class="btn btn-success" >Accept</button>
                         </form>
                     </td>
-                @elseif($item->status == 1)
+                @elseif($item->status == 1 || $item->status == 3)
                     <td>
                         <form action="/createmeeting" method="POST">
                             @csrf
@@ -48,6 +48,10 @@
                         </form>
                     </td>
                 @elseif($item->status == 4)
+                    <td>
+                        <button type="submit" class="btn btn-secondary" >ONGOING INTERVIEW</button>
+                    </td>
+                @elseif($item->status == 5)
                     <td>
                         <button type="submit" class="btn btn-secondary" >INTERVIEW OVER</button>
                     </td>

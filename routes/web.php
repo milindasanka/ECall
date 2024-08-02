@@ -52,6 +52,8 @@ Route::post('/jobdelu', 'jobController@jobdelu')->name('jobdelu');
 Route::post('/createmeeting', 'MeetingController@create')->name('createmeeting');
 Route::post('/modulatorjoin', 'MeetingController@Modulatorjoin')->name('modulatorjoin');
 Route::post('/atendeejoin', 'MeetingController@Atendeejoin')->name('atendeejoin');
+Route::get('/endmeeting', 'MeetingController@Endmeeting')->name('endmeeting');
+
 
 Route::get('/addjobpost', function () {
     return view('user.addjobpost');

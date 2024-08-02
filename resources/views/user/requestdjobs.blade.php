@@ -2,7 +2,7 @@
 @section('main-content')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('APPLICATION LIST') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('REQUEST LIST') }}</h1>
 
     <table class="table">
         <thead>
@@ -37,7 +37,10 @@
                         </form>
                     @elseif($item->status == 4)
                         <button class="btn btn-info" disabled >INTERVIEW OVER</button>
-                    @else
+
+                        @elseif($item->status == 5)
+                            <button class="btn btn-info" disabled >PENDING RESULTS</button>
+                        @else
                         <button class="btn btn-warning" >PENDING</button>
                     @endif
                 </td>

@@ -31,6 +31,8 @@ class HomeController extends Controller
         $jobs = jobs::where('is_active',1)->count();
         $applications = apply_job::count();
         $requested = apply_job::where('status', 2)->count();
+        $haired = apply_job::where('status', 6)->count();
+        $rejected = apply_job::where('status', 7)->count();
         $users = User::count();
         $jobscat = [
             'se' => round(jobs::where('job_category','Software Engineer')->where('is_active',1)->count()/$jobs * 100, 0),
@@ -50,6 +52,8 @@ class HomeController extends Controller
             'jobs' => $jobs,
             'applications' => $applications,
             'requested' => $requested,
+            'haired' => $haired,
+            'rejected' => $rejected,
             //...
         ];
 

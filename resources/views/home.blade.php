@@ -165,7 +165,42 @@
                     </div>
                 </div>
             </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Summary</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctx = document.getElementById('myPieChart').getContext('2d');
+                const data = {
+                    labels: ['APPLICATIONS', 'INTERVIEWS', 'HAIRED', 'REJECTED'],
+                    datasets: [{
+                        data: [<?php echo $widget['applications']?>, <?php echo $widget['requested']?>, <?php echo $widget['haired']?>, <?php echo $widget['rejected']?>],
+                        backgroundColor: [
+                            'rgb(255,197,2)',
+                            'rgb(4,19,96)',
+                            'rgb(1,194,1)',
+                            'rgb(189,4,10)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+
+                const config = {
+                    type: 'pie',
+                    data: data,
+                };
+
+                const myPieChart = new Chart(ctx, config);
+            </script>
         </div>
+
 
 
     </div>
