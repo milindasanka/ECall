@@ -27,6 +27,11 @@ class ProfileController extends Controller
         return view('cvprofile', $profiledata);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * update cv profile
+     */
     public function updatecv(Request $request){
         $skillsArray = array();
         $skillsArray = explode(',', $request->skills);

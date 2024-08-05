@@ -102,6 +102,16 @@
                     Looks good!
                 </div>
             </div>
+            <div class="col-sm-6 form-group">
+                <label for="pass2">Test Questions</label>
+                <input type="text" name="q1" class="form-control" id="tag-input1" placeholder="" required>
+                <input type="text" name="q2" class="form-control" id="tag-input1" placeholder="" required>
+                <input type="text" name="q3" class="form-control" id="tag-input1" placeholder="" required>
+                <input type="text" name="q4" class="form-control" id="tag-input1" placeholder="" required>
+                <input type="text" name="q5" class="form-control" id="tag-input1" placeholder="" required>
+                <SPAN>Interview Parameters (Only Add Rating Questions)</SPAN>
+            </div>
+
         </div>
         <button class="btn btn-primary" type="submit">Add Job</button>
     </form>

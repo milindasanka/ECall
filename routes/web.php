@@ -51,8 +51,12 @@ Route::post('/jobdelu', 'jobController@jobdelu')->name('jobdelu');
 
 Route::post('/createmeeting', 'MeetingController@create')->name('createmeeting');
 Route::post('/modulatorjoin', 'MeetingController@Modulatorjoin')->name('modulatorjoin');
+Route::any('/starmeeting', 'MeetingController@starmeeting')->name('starmeeting');
 Route::post('/atendeejoin', 'MeetingController@Atendeejoin')->name('atendeejoin');
 Route::get('/endmeeting', 'MeetingController@Endmeeting')->name('endmeeting');
+Route::post('/getpoints', 'MeetingController@getpoints')->name('getpoints');
+Route::post('/approvex', 'MeetingController@approvex')->name('approvex');
+Route::post('/rejectx', 'MeetingController@rejectx')->name('rejectx');
 
 
 Route::get('/addjobpost', function () {

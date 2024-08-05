@@ -40,6 +40,10 @@
 
                         @elseif($item->status == 5)
                             <button class="btn btn-info" disabled >PENDING RESULTS</button>
+                        @elseif($item->status == 6)
+                            <button class="btn btn-success" disabled >YOU SELECTED</button>
+                        @elseif($item->status == 7)
+                            <button class="btn btn-danger" disabled >YOU REJECTED</button>
                         @else
                         <button class="btn btn-warning" >PENDING</button>
                     @endif

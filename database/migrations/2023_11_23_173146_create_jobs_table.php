@@ -21,6 +21,11 @@ return new class extends Migration
             $table->string('job_description', 255);
             $table->string('place');
             $table->string('is_active');
+            $table->string('q1');
+            $table->string('q2');
+            $table->string('q3');
+            $table->string('q4');
+            $table->string('q5');
             $table->string('call_link')->nullable();
             $table->timestamps();
         });

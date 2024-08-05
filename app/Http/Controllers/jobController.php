@@ -10,6 +10,7 @@ use App\Models\jobs;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class jobController extends Controller
 {
@@ -31,7 +32,31 @@ class jobController extends Controller
       return view('user.jobslist',['data' => $data]);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * add new job
+     */
     function addNewjob(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'job_title' => 'required|string|max:255',
+            'job_category' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'job_description' => 'required|string',
+            'skills' => 'required|string',
+            'place' => 'required|string|max:255',
+            'q1' => 'nullable|string',
+            'q2' => 'nullable|string',
+            'q3' => 'nullable|string',
+            'q4' => 'nullable|string',
+            'q5' => 'nullable|string',
+        ]);
+
+        // Check if the validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $skillsArray = array();
         $skillsArray = explode(',', $request->skills);
@@ -43,6 +68,11 @@ class jobController extends Controller
         $jobs->job_description = $request->job_description;
         $jobs->skills = json_encode($skillsArray);
         $jobs->place = $request->place;
+        $jobs->q1 = $request->q1;
+        $jobs->q2 = $request->q2;
+        $jobs->q3 = $request->q3;
+        $jobs->q4 = $request->q4;
+        $jobs->q5 = $request->q5;
         $jobs->is_active = '1';
         $jobs->emusers_id = Auth::user()->id;
         $jobs->save();
@@ -63,6 +93,11 @@ class jobController extends Controller
         return view('user.jobview',['data' => $data , 'hide' => $h]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|string
+     * apply job
+     */
     function applythisjob($id){
 
         $job = jobs::where('id', $id)
@@ -192,72 +227,90 @@ class jobController extends Controller
         $mail = User::where('id',$applyer_id['applyer_id'])->first();
         $htmlContent = '
         <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Your Application Approved</title>
-                <style>
-                    /* Reset styles */
-                    body, html {
-                        margin: 0;
-                        padding: 0;
-                        font-family: Arial, sans-serif;
-                        line-height: 1.6;
-                    }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Application Approved</title>
+    <style>
+        /* Reset styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
 
-                    /* Body styles */
-                    body {
-                        background-color: #f4f4f4;
-                        padding: 20px;
-                    }
+        /* Body styles */
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
 
-                    /* Container styles */
-                    .container {
-                        max-width: 600px;
-                        margin: 0 auto;
-                        background-color: #fff;
-                        padding: 20px;
-                        border-radius: 5px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                    }
+        /* Container styles */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-                    /* Header styles */
-                    h1, h2, h3, h4, h5, h6 {
-                        margin-top: 0;
-                    }
+        /* Header styles */
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
 
-                    /* Button styles */
-                    .button {
-                        display: inline-block;
-                        padding: 10px 20px;
-                        background-color: #007bff;
-                        color: #fff;
-                        text-decoration: none;
-                        border-radius: 4px;
-                        transition: background-color 0.3s ease;
-                    }
+        /* Button styles */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
 
-                    .button:hover {
-                        background-color: #0056b3;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>Congratulations! </h1>
-                    <p>Hey,</p>
+        .button:hover {
+            background-color: #0056b3;
+        }
 
-                    <p>Congratulations, Your Job Application [ID: '.$jobid.'] is Approved by Job Owner</p>
+        /* Footer styles */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
 
-                    <p>We will give you an interview soon
-                    </p>
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
 
-                    <p>Best regards,<br>Team FLEXHAIER </p>
-
-                </div>
-            </body>
-            </html>';
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Congratulations!</h1>
+        <p>Hey,</p>
+        <p>Congratulations, Your Job Application [ID: '.$jobid.'] is Approved by Job Owner</p>
+        <p>We will give you an interview soon.</p>
+        <p>Best regards,<br>Team FLEXHAIER</p>
+    </div>
+    <div class="footer">
+        <img src="https://i.ibb.co/zh0SzkT/logo.png" alt="logo" style="height: 50px;">
+        <p>&copy; 2024 FLEXHAIER. All rights reserved. <br>
+        Visit our <a href="https://www.flexhaier.com">website</a> or contact us at <a href="mailto:support@flexhaier.com">support@flexhaier.com</a></p>
+    </div>
+</body>
+</html>
+';
         $mailpost = new mailpost();
         $mailpost->sendmail($mail['email'],'Your Application Approved',$htmlContent);
 

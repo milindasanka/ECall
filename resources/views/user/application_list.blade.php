@@ -41,7 +41,7 @@
                     </td>
                 @elseif($item->status == 2)
                     <td>
-                        <form action="/modulatorjoin" method="POST">
+                        <form action="/modulatorjoin" method="POST" >
                             @csrf
                             <input type="hidden" name="job_id" value="{{ $item->id }}">
                             <button type="submit" class="btn btn-success" >START MEETING</button>
@@ -49,11 +49,27 @@
                     </td>
                 @elseif($item->status == 4)
                     <td>
-                        <button type="submit" class="btn btn-secondary" >ONGOING INTERVIEW</button>
+                        <form action="/starmeeting" method="POST" >
+                            @csrf
+                            <input type="hidden" name="job_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-outline-success" >ONGOING INTERVIEW</button>
+                        </form>
                     </td>
                 @elseif($item->status == 5)
                     <td>
-                        <button type="submit" class="btn btn-secondary" >INTERVIEW OVER</button>
+                        <form action="/starmeeting" method="POST" >
+                        @csrf
+                        <input type="hidden" name="job_id" value="{{ $item->id }}">
+                        <button type="submit" class="btn btn-outline-success" >INTERVIEW OVER</button>
+                        </form>
+                    </td>
+                @elseif($item->status == 6)
+                    <td>
+                        <button type="submit" class="btn btn-success" >SELECTED</button>
+                    </td>
+                @elseif($item->status == 7)
+                    <td>
+                        <button type="submit" class="btn btn-danger" >REJECTED</button>
                     </td>
                 @endif
                 @if($item->status == 2)
